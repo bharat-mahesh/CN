@@ -6,11 +6,8 @@ key=input("Enter the keyword ")
 keylist=[i for i in key]
 # print(keylist)
 
-i=0
-while i<3:
-    datawordlist.append('0')
-    i+=1
-# print(datawordlist)
+datawordlist.extend(['0','0','0'])
+print(datawordlist)
 
 
 
