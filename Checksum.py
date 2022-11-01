@@ -10,7 +10,13 @@ def hexConvert(inp_str):
 
 
     nums=''.join(hex_arr)
+    
+    if len(nums)%4 !=0:
+        nums+='00'
+
     hex_nums=(textwrap.wrap(nums,4))
+    
+
     return hex_nums
 
 
@@ -21,22 +27,23 @@ def sum(hex_nums,checksum):
     sum+=int(checksum,16)
     sum = hex(sum)
 
-
     fsum=sum[2:]
 
-    if (len(fsum)>4):
+    while (len(fsum)>4):
         carry=fsum[0]
-        newsum=fsum[1:]
+        fsum=fsum[1:]
+        sum2=hex(int(carry,16)+int(fsum,16))
 
-
-    sum2=hex(int(carry,16)+int(newsum,16))
 
     tosend=sum2[2:]
 
-
     checksumlist=[]
     for i in tosend:
-        checksumlist.append(15-int(i,16))
+        checksumlist.append(hex(15-int(i,16)))
+    for i in range(len(checksumlist)):
+        f=checksumlist[i]
+        checksumlist[i]=f[2:]
+
     checksum=''.join(str(x) for x in checksumlist)
     return checksum
 
@@ -56,8 +63,8 @@ checksum2=sum(hex_nums2,checksum)
 
 print("Checksum at receiver =",checksum2)
 
-check=checksum2.find('1')
-if(check==-1):
+check=int(checksum2,16)
+if(check==0):
     print("Data is unaltered")
 else:
     print("Data has been altered")
