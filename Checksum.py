@@ -15,9 +15,11 @@ def hexConvert(inp_str):
         nums+='00'
 
     hex_nums=(textwrap.wrap(nums,4))
-    
+    print(hex_nums)    
 
     return hex_nums
+
+
 
 
 def sum(hex_nums,checksum):
@@ -58,12 +60,13 @@ print("Checksum sent =",checksum)
 
 print("--Receiver--")
 inp_str2=input("Enter the text ")
+checksum2=input("Enter the checksum ")
+
 hex_nums2=hexConvert(inp_str2)
-checksum2=sum(hex_nums2,checksum)
+checksum3=sum(hex_nums2,checksum2)
 
-print("Checksum at receiver =",checksum2)
 
-check=int(checksum2,16)
+check=int(checksum3,16)
 if(check==0):
     print("Data is unaltered")
 else:

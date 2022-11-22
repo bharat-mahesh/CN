@@ -1,4 +1,4 @@
-print("---SENDER---")
+print("Sender")
 dataword=input("Enter the dataword ")
 datawordlist=[i for i in dataword]
 # print(datawordlist)
@@ -57,7 +57,7 @@ def division(datawordlist,keylist):
 encodedDataword=division(datawordlist,keylist)    
 print("Encoded data word is:",''.join(encodedDataword))
 
-print("---RECEIVER--")
+print("Receiver")
 
 dataword1=input("Enter the dataword ")
 datawordlist1=[i for i in dataword1]

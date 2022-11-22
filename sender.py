@@ -38,24 +38,11 @@ def discardedFrames(k, n):
 
 host = 'localhost'
 port = 5050
-
-msg = "All Sent"
-
+msg = "Sent"
 s = socket.socket()
-
-
 s.bind(('', port))
-
-
 s.listen(1)
-
-
 c, addr = s.accept()
-
-
-print("Connection Establishied:", str(addr))
-
-
 k = 0
 
 
@@ -63,14 +50,9 @@ N = input("Enter the no of frames: ")
 
 
 window_size = input("Enter the window size: ")
-
 c.send(str(window_size).encode())
-
 c.send(str(N).encode())
-
-
 sendFrames(k, window_size)
-
 while True:
 
     (ack, k) = waitingforAcknowlegment(k)
@@ -86,5 +68,5 @@ while True:
             sendNextFrames(k+int(window_size)-1)
     if k == int(N):
         c.send(str(msg).encode())
-        print("\n\nAll Frames are Transmitted Successfully")
+        print("\n\nsuccessful transmission")
         break

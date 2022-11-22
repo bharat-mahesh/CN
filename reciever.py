@@ -1,19 +1,21 @@
 
 import socket
+import random
 
 
 def sendAcknowledgment(k):
-    print("\nSending ACK for ", k)
-    ack = input("Enter 1 to send ACK\nEnter 2 to not send ACK\n")
-    s.send(ack.encode())
-    if ack == '2':
-        print("Discarded Remaining Frames!\n\n")
-        return k
-    elif ack == '1':
-        k = k+1
-        return k
-    else:
-        return k
+    print("\nSending acknowledgement for ", k)
+    while True:
+        
+        ack = str(random.randint(1,2))
+        s.send(ack.encode())
+        if ack == '2':
+            print("Discarded frames\n\n")
+            return k
+        elif ack == '1':
+            k = k+1
+            return k
+
 
 
 host = 'localhost'
@@ -22,7 +24,7 @@ port = 5050
 
 s = socket.socket()
 
-s.connect(('192.168.26.112', port))
+s.connect(('10.0.120.32', port))
 
 
 window_size = s.recv(1024)
